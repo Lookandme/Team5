@@ -16,7 +16,6 @@ public class SaveManager : MonoBehaviour
 
     public GameObject hidden;
 
-    public AudioClip clip;
 
     private void Awake()
     {
@@ -25,10 +24,6 @@ public class SaveManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        clip = gameObject.GetComponent<AudioClip>();    
-    }
 
     public void Update()
     {
@@ -41,8 +36,5 @@ public class SaveManager : MonoBehaviour
         }        
     }
     
-    public void Debuglog()
-    {
-        Debug.Log(Kim);
-    }
+
 }

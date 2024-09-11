@@ -46,11 +46,11 @@ public class GameManager : MonoBehaviour
         {
             nameTxt.text = "손대오";
         }
-
         else if (savename == "Park")
         {
             nameTxt.text = "박상규";
-        }else if (savename == "Hidden")
+        }
+        else if (savename == "Hidden")
         {
             nameTxt.text = "튜트리얼";
         }
