@@ -16,13 +16,20 @@ public class SaveManager : MonoBehaviour
 
     public GameObject hidden;
 
+    public AudioClip clip;
+
     private void Awake()
     {
         instance = this;
 
         DontDestroyOnLoad(gameObject);
     }
-    
+
+    private void Start()
+    {
+        clip = gameObject.GetComponent<AudioClip>();    
+    }
+
     public void Update()
     {
         if (SceneManager.GetActiveScene().name == "MenuScene")
