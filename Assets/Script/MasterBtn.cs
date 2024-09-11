@@ -20,9 +20,9 @@ public class MasterBtn : MonoBehaviour
         //
     }
     //Challenge
-    public void RetryBtn()
+    public void NameSceneBtn()
     {
-        SceneManager.LoadScene("NameScene" + "Kim");
+        SceneManager.LoadScene("NameScene");
     }
     public void EndBtn()
     {
