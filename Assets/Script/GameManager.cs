@@ -11,7 +11,9 @@ public class GameManager : MonoBehaviour
     public Card secondCard;
 
     public Text timeTxt;
-    public GameObject endTxt;
+    public GameObject Clear;
+    public GameObject Fail;
+    public GameObject MatchingImage;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -38,7 +40,7 @@ public class GameManager : MonoBehaviour
         {
             timeTxt.text = "30.0";
             Time.timeScale = 0.0f;
-            endTxt.SetActive(true); 
+            Fail.SetActive(true); 
         }
     }
     
@@ -47,13 +49,15 @@ public class GameManager : MonoBehaviour
         if(firstCard.idx == secondCard.idx)
         {
             audioSource.PlayOneShot(clip);
+            MatchingImage.SetActive(true);
+            Invoke("CloseMatchingImage", 1f);
             firstCard.DestoryCard();
             secondCard.DestoryCard();
             cardCount -= 2;
             if(cardCount == 0 )
             {
                 Time.timeScale = 0.0f;
-                endTxt.SetActive(true);
+                Clear.SetActive(true);
             }
         }
         else
@@ -63,5 +67,10 @@ public class GameManager : MonoBehaviour
         }
         firstCard = null;
         secondCard = null;
+    }
+
+    public void CloseMatchingImage()
+    {
+        MatchingImage.SetActive(false);
     }
 }

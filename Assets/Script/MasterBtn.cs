@@ -22,7 +22,7 @@ public class MasterBtn : MonoBehaviour
     //Challenge
     public void RetryBtn()
     {
-        SceneManager.LoadScene("NameScene" + "???");
+        SceneManager.LoadScene("NameScene" + "Kim");
     }
     public void EndBtn()
     {
