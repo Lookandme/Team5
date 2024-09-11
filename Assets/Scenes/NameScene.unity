@@ -273,7 +273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4377196182019749942, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4377196182019749942, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -285,7 +285,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4377196182019749942, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RetryBtn
+      value: NameSceneBtn
       objectReference: {fileID: 0}
     - target: {fileID: 4377196182019749942, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -305,7 +305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7131962047779702987, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7131962047779702987, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -317,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7131962047779702987, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: RetryBtn
+      value: NameSceneBtn
       objectReference: {fileID: 0}
     - target: {fileID: 7131962047779702987, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -703,6 +703,10 @@ MonoBehaviour:
   Fail: {fileID: 1935129674}
   MatchingImage: {fileID: 236090412}
   clip: {fileID: 8300000, guid: 5d495fcab9f1f65499066727bd968a3a, type: 3}
+  MatchClip: {fileID: 0}
+  FailClip: {fileID: 0}
+  GameOverClip: {fileID: 0}
+  ClearClip: {fileID: 0}
   cardCount: 0
 --- !u!82 &1432491313
 AudioSource:

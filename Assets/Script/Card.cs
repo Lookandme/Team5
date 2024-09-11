@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
-    public int idx = 0;
+    public string idx = null;
 
     public GameObject front;
     public GameObject back;
@@ -29,10 +29,10 @@ public class Card : MonoBehaviour
 
     }
 
-    public void Setting(int number)
+    public void Setting(string name) //!!!int number
     {
-        idx = number;
-        frontImage.sprite = Resources.Load<Sprite>($"Kim{idx}");
+        idx = name;
+        frontImage.sprite = Resources.Load<Sprite>(idx); //!!!$"Kim{idx}"
     }
 
     public void OpenCard()
