@@ -463,7 +463,7 @@ MonoBehaviour:
   back: {fileID: 1685735605381296206}
   anim: {fileID: 7799141702142483737}
   frontImage: {fileID: 1677721671372330007}
-  clip: {fileID: 8300000, guid: d68f08809913177489c508d495c71a33, type: 3}
+  clip: {fileID: 8300000, guid: 13080dc9f84824b65ad233427adf53a8, type: 3}
   Pt: {fileID: 6772126923697496396}
 --- !u!95 &7799141702142483737
 Animator:

@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     public Text resultNameFail;
 
     AudioSource audioSource;
-    public AudioClip clip;
     public AudioClip MatchClip;
     public AudioClip FailClip;
     public AudioClip GameOverClip;
@@ -31,6 +30,7 @@ public class GameManager : MonoBehaviour
 
 
     public int cardCount = 0;
+    bool musicset = true;
     float time = 0.0f;
     float maxTime = 0.0f;
     float showTime = 0.0f;
@@ -87,7 +87,11 @@ public class GameManager : MonoBehaviour
 
             if (time >= maxTime)
             {
-                audioSource.PlayOneShot(GameOverClip);
+                if (musicset)
+                {
+                     audioSource.PlayOneShot(GameOverClip);
+                    musicset = false;
+                }
                 timeTxt.text = maxTime.ToString();
                 //Time.timeScale = 0.0f;
                 Fail.SetActive(true);
