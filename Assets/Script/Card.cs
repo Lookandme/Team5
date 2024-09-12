@@ -46,24 +46,24 @@ public class Card : MonoBehaviour
             anim.SetBool("isOpen", true);
             Invoke("CardState", 0.4f);
 
-        // firstCard가 비었다면,
-        if (GameManager.Instance.firstCard == null)
-        {
-            // firstCard에 내 정보를 넘겨준다.
-            GameManager.Instance.firstCard = this;
-            //button1 = FindButton();
+            // firstCard가 비었다면,
+            if (GameManager.Instance.firstCard == null)
+            {
+                // firstCard에 내 정보를 넘겨준다.
+                GameManager.Instance.firstCard = this;
+                //button1 = FindButton();
             }
-        // firstCard가 비어있지 않다면,
-        else
-        {
-            // secondCard에 내 정보를 넘겨준다.
-            GameManager.Instance.secondCard = this;
-            //button2 = FindButton();
-            // Mached 함수를 호출해 준다.
-            GameManager.Instance.Matched();
+            // firstCard가 비어있지 않다면,
+            else
+            {
+                // secondCard에 내 정보를 넘겨준다.
+                GameManager.Instance.secondCard = this;
+                //button2 = FindButton();
+                // Mached 함수를 호출해 준다.
+                GameManager.Instance.Matched();
+            }
         }
     }
-
     public Button FindButton()
     {
         Button button = this.gameObject.transform.
@@ -72,7 +72,7 @@ public class Card : MonoBehaviour
             GetChild(0).
             GetComponent<Button>();
         button.enabled = false;
-        
+
 
         return button;
     }
@@ -89,7 +89,7 @@ public class Card : MonoBehaviour
     }
 
     public void CloseCard()
-    {  
+    {
         Invoke("CloseCardInvoke", 1.0f);
     }
 
@@ -113,3 +113,4 @@ public class Card : MonoBehaviour
         Pt.Play();
     }
 }
+
