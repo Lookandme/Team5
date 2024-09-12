@@ -37,23 +37,26 @@ public class Card : MonoBehaviour
 
     public void OpenCard()
     {
-        audioSource.PlayOneShot(clip);
-        anim.SetBool("isOpen", true);
-        Invoke("CardState", 0.4f);
+        if (GameObject.Find("Canvas").transform.Find("Clear").gameObject.activeSelf == false && GameObject.Find("Canvas").transform.Find("Fail").gameObject.activeSelf == false && anim.GetBool("isOpen") == false)
+        {
+            audioSource.PlayOneShot(clip);
+            anim.SetBool("isOpen", true);
+            Invoke("CardState", 0.4f);
 
-        // firstCard가 비었다면,
-        if (GameManager.Instance.firstCard == null)
-        {
-            // firstCard에 내 정보를 넘겨준다.
-            GameManager.Instance.firstCard = this;
-        }
-        // firstCard가 비어있지 않다면,
-        else
-        {
-            // secondCard에 내 정보를 넘겨준다.
-            GameManager.Instance.secondCard = this;
-            // Mached 함수를 호출해 준다.
-            GameManager.Instance.Matched();
+            // firstCard가 비었다면,
+            if (GameManager.Instance.firstCard == null)
+            {
+                // firstCard에 내 정보를 넘겨준다.
+                GameManager.Instance.firstCard = this;
+            }
+            // firstCard가 비어있지 않다면,
+            else
+            {
+                // secondCard에 내 정보를 넘겨준다.
+                GameManager.Instance.secondCard = this;
+                // Mached 함수를 호출해 준다.
+                GameManager.Instance.Matched();
+            }
         }
     }
 
