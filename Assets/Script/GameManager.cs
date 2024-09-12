@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
     public Text nameTxt;
     public GameObject Clear;
     public GameObject Fail;
-    public GameObject MatchingImage;
+    public GameObject matchBoard;
+    public SpriteRenderer matchingImage;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -29,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     public int cardCount = 0;
     float time = 0.0f;
-
+    float maxTime = 0.0f;
+    float showTime = 0.0f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -61,23 +64,28 @@ public class GameManager : MonoBehaviour
         {
             nameTxt.text = "Æ©Æ®¸®¾ó";
         }
-
+        if (savename == "Hidden") { maxTime = 60.0f; showTime = 0.7f;}
+        else { maxTime = 30.0f; showTime = 1f;}
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
-        if (time >= 30.0f)
+        if (SceneManager.GetActiveScene().name == "NameScene")
         {
-            audioSource.PlayOneShot(GameOverClip);
-            Debug.Log("³¡³µ¾î¿ä");
-            timeTxt.text = "30.0";
-            Time.timeScale = 0.0f;
-            Fail.SetActive(true);
-        }
+            time += Time.deltaTime;
+            timeTxt.text = time.ToString("N2");
+        
+            if (time >= maxTime)
+            {
+                audioSource.PlayOneShot(GameOverClip);
+                Debug.Log("³¡³µ¾î¿ä");
+                timeTxt.text = "30.0";
+                Time.timeScale = 0.0f;
+                Fail.SetActive(true);
+            }
+         }
     }
 
     public void Matched()
@@ -86,8 +94,9 @@ public class GameManager : MonoBehaviour
         {
             audioSource.PlayOneShot(MatchClip);
             Debug.Log("ÀßÇß¾î¿ä");
-            MatchingImage.SetActive(true);
-            Invoke("CloseMatchingImage", 1f);
+            matchingImage.sprite = Resources.Load<Sprite>(ImageChange(firstCard.idx));
+            matchBoard.SetActive(true);
+            Invoke("CloseMatchingImage", showTime);
             firstCard.DestoryCard();
             secondCard.DestoryCard();
             cardCount -= 2;
@@ -134,6 +143,22 @@ public class GameManager : MonoBehaviour
 
     public void CloseMatchingImage()
     {
-        MatchingImage.SetActive(false);
+        matchBoard.SetActive(false);
+    }
+
+    public string ImageChange(string imageName)
+    {
+        char[] imageNameChar = imageName.ToCharArray();
+        char[] strTester = imageNameChar;
+        int x = 0;
+        for (int i = 0;i<strTester.Length; i++)
+        {
+            if (int.TryParse(strTester[i].ToString(), out x))
+            {
+                strTester[i] = '8';
+            }
+        }
+        string resultImageName = new string(strTester);
+        return resultImageName;
     }
 }

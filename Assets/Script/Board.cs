@@ -7,11 +7,33 @@ public class Board : MonoBehaviour
 {
     public GameObject card;
 
+    string[] namearr = { "Kim", "Park", "Son", "Lee" };
+    int[] numarr = { 0, 1, 2, 3, 4, 5, 6, 7 };
+    string[] arr = new string[16];
+    int saveRandom = 0;
     // Start is called before the first frame update
     void Start()
     {
-        int[] arr = { 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+        string savenameBoard = SaveManager.instance.name.ToString();
+        if (savenameBoard == "Hidden")
+        {
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (i % 4 == 0) { numarr[i / 2] = Random.Range(0, 8); }
+                else if (i % 4 == 2)
+                {
+                    saveRandom = Random.Range(numarr[i / 2 - 1] + 1, numarr[i / 2 - 1] + 8);
+                    numarr[i / 2] = saveRandom % 8;
+                }
+                arr[i] = namearr[i / 4] + numarr[i / 2].ToString();
+            }
+        }
+        else
+        {
+            for (int i = 0; i < arr.Length; i++) { arr[i] = savenameBoard + numarr[i / 2].ToString(); }
+        }
         arr = arr.OrderBy(x => Random.Range(0f, 7f)).ToArray();
+
         for(int i = 0; i < 16; i++)
         {
             GameObject go = Instantiate(card, this.transform);
