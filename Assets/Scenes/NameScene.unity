@@ -823,6 +823,8 @@ MonoBehaviour:
   Fail: {fileID: 1935129674}
   matchBoard: {fileID: 1317129719}
   matchingImage: {fileID: 1424948219}
+  resultNameClear: {fileID: 1562468447}
+  resultNameFail: {fileID: 1666749540}
   clip: {fileID: 8300000, guid: 5d495fcab9f1f65499066727bd968a3a, type: 3}
   MatchClip: {fileID: 0}
   FailClip: {fileID: 0}
@@ -925,6 +927,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1562468447 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2160056343067155472, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
+  m_PrefabInstance: {fileID: 119211884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1599127395
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1006,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1666749540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6887613865084913077, guid: 2c6d91e39b252ac4ab757d58ad1e51dd, type: 3}
+  m_PrefabInstance: {fileID: 119211884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1767904439
 GameObject:
   m_ObjectHideFlags: 0

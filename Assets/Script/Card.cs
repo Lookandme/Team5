@@ -18,8 +18,8 @@ public class Card : MonoBehaviour
 
     public ParticleSystem Pt;
 
-    Button button1;
-    Button button2;
+    //Button button1;
+    //Button button2;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,10 +32,10 @@ public class Card : MonoBehaviour
 
     }
 
-    public void Setting(string name) //!!!int number
+    public void Setting(string name)
     {
         idx = name;
-        frontImage.sprite = Resources.Load<Sprite>(idx); //!!!$"Kim{idx}"
+        frontImage.sprite = Resources.Load<Sprite>(idx);
     }
 
     public void OpenCard()
@@ -46,20 +46,15 @@ public class Card : MonoBehaviour
             anim.SetBool("isOpen", true);
             Invoke("CardState", 0.4f);
 
-            // firstCard가 비었다면,
             if (GameManager.Instance.firstCard == null)
             {
-                // firstCard에 내 정보를 넘겨준다.
                 GameManager.Instance.firstCard = this;
                 //button1 = FindButton();
             }
-            // firstCard가 비어있지 않다면,
             else
             {
-                // secondCard에 내 정보를 넘겨준다.
                 GameManager.Instance.secondCard = this;
                 //button2 = FindButton();
-                // Mached 함수를 호출해 준다.
                 GameManager.Instance.Matched();
             }
         }

@@ -27,26 +27,26 @@ public class Ending : MonoBehaviour
     }
 
         // Update is called once per frame
-        void Update()
-        {
+    void Update()
+    {
         
-        }
-        void Name0()
-        {
+    }
+    void Name0()
+    {
         Title.SetActive(true);
-          }
+    }
 
     void Name1()
     {
         Kim.SetActive(true);
     }
- void Name2()
+    void Name2()
     {
-        Son.SetActive(true);
+        Park.SetActive(true);
     }
     void Name3()
     {
-        Park.SetActive(true);
+        Son.SetActive(true);
     }
     void Name4()
     {

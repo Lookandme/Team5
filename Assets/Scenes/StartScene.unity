@@ -615,7 +615,10 @@ MonoBehaviour:
   nameTxt: {fileID: 0}
   Clear: {fileID: 0}
   Fail: {fileID: 0}
-  MatchingImage: {fileID: 0}
+  matchBoard: {fileID: 0}
+  matchingImage: {fileID: 0}
+  resultNameClear: {fileID: 0}
+  resultNameFail: {fileID: 0}
   clip: {fileID: 0}
   MatchClip: {fileID: 0}
   FailClip: {fileID: 0}

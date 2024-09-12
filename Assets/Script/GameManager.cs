@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public GameObject Fail;
     public GameObject matchBoard;
     public SpriteRenderer matchingImage;
+    public Text resultNameClear;
+    public Text resultNameFail;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
     float time = 0.0f;
     float maxTime = 0.0f;
     float showTime = 0.0f;
+    string savename = SaveManager.instance.name.ToString();
     // Start is called before the first frame update
     private void Awake()
     {
@@ -42,48 +45,53 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1.0f;
         audioSource = GetComponent<AudioSource>();
-        string savename = SaveManager.instance.name.ToString();
-        if (savename == "Kim" && SceneManager.GetActiveScene().name == "NameScene")
+        if (SceneManager.GetActiveScene().name == "NameScene")
         {
-            nameTxt.text = "김경구";
+            if (savename == "Kim")
+            {
+                nameTxt.text = "김경구";
+            }
+            else if (savename == "Lee")
+            {
+                nameTxt.text = "이승환";
+            }
+            else if (savename == "Son")
+            {
+                nameTxt.text = "손대오";
+            }
+            else if (savename == "Park")
+            {
+                nameTxt.text = "박상규";
+            }
+            else if (savename == "Hidden")
+            {
+                nameTxt.text = "튜트리얼";
+            }
+            if (savename == "Hidden") { maxTime = 60.0f; showTime = 0.7f; }
+            else { maxTime = 30.0f; showTime = 1f; }
+            resultNameClear.text = $"Tutor.{nameTxt.text}";
+            resultNameFail.text = $"{nameTxt.text}(Unity N수)";
         }
-        else if (savename == "Lee")
-        {
-            nameTxt.text = "이승환";
-        }
-        else if (savename == "Son")
-        {
-            nameTxt.text = "손대오";
-        }
-        else if (savename == "Park")
-        {
-            nameTxt.text = "박상규";
-        }
-        else if (savename == "Hidden")
-        {
-            nameTxt.text = "튜트리얼";
-        }
-        if (savename == "Hidden") { maxTime = 60.0f; showTime = 0.7f; }
-        else { maxTime = 30.0f; showTime = 1f; }
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (cardCount != 0)
+        if (SceneManager.GetActiveScene().name == "NameScene")
         {
-            time += Time.deltaTime;
-            timeTxt.text = time.ToString("N2");
-        }
+            if (cardCount != 0)
+            {
+                time += Time.deltaTime;
+                timeTxt.text = time.ToString("N2");
+            }
 
-        if (time >= maxTime)
-        {
-            audioSource.PlayOneShot(GameOverClip);
-            Debug.Log("끝났어요");
-            timeTxt.text = "30.0";
-            //Time.timeScale = 0.0f;
-            Fail.SetActive(true);
+            if (time >= maxTime)
+            {
+                audioSource.PlayOneShot(GameOverClip);
+                timeTxt.text = maxTime.ToString();
+                //Time.timeScale = 0.0f;
+                Fail.SetActive(true);
+            }
         }
     }
 
@@ -93,7 +101,6 @@ public class GameManager : MonoBehaviour
     if (firstCard.idx == secondCard.idx)
     {
         audioSource.PlayOneShot(MatchClip);
-        Debug.Log("잘했어요");
         matchingImage.sprite = Resources.Load<Sprite>(ImageChange(firstCard.idx));
         matchBoard.SetActive(true);
         Invoke("CloseMatchingImage", showTime);
@@ -103,37 +110,34 @@ public class GameManager : MonoBehaviour
         if (cardCount == 0)
         {
             audioSource.PlayOneShot(ClearClip);
-            Debug.Log("이겼어요");
             //Time.timeScale = 0.0f;
-            Clear.SetActive(true);
+            if (savename != "Hidden") Clear.SetActive(true);
 
-                string savename = SaveManager.instance.name;
-                if (savename == "Kim")
-                {
-                    SaveManager.instance.Kim = true;
-                }
-                else if (savename == "Park")
-                {
-                    SaveManager.instance.Park = true;
-                }
-                else if (savename == "Son")
-                {
-                    SaveManager.instance.Son = true;
-                }
-                else if (savename == "Lee")
-                {
-                    SaveManager.instance.Lee = true;
-                }
-                else if(savename == "Hidden")
-                {
-                    SceneManager.LoadScene("EndScene");
-                }
+            if (savename == "Kim")
+            {
+                SaveManager.instance.Kim = true;
+            }
+            else if (savename == "Park")
+            {
+                SaveManager.instance.Park = true;
+            }
+            else if (savename == "Son")
+            {
+                SaveManager.instance.Son = true;
+            }
+            else if (savename == "Lee")
+            {
+                SaveManager.instance.Lee = true;
+            }
+            else if(savename == "Hidden")
+            {
+                Invoke("ToEnd", 3f);
             }
         }
+    }
         else
         {
             audioSource.PlayOneShot(FailClip);
-            Debug.Log("졌어요");
             firstCard.CloseCard();
             secondCard.CloseCard();
         }
@@ -160,5 +164,10 @@ public class GameManager : MonoBehaviour
         }
         string resultImageName = new string(strTester);
         return resultImageName;
+    }
+
+    public void ToEnd()
+    {
+        SceneManager.LoadScene("EndScene");
     }
 }
