@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -64,48 +63,49 @@ public class GameManager : MonoBehaviour
         {
             nameTxt.text = "튜트리얼";
         }
-        if (savename == "Hidden") { maxTime = 60.0f; showTime = 0.7f;}
-        else { maxTime = 30.0f; showTime = 1f;}
+        if (savename == "Hidden") { maxTime = 60.0f; showTime = 0.7f; }
+        else { maxTime = 30.0f; showTime = 1f; }
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == "NameScene")
+        if (cardCount != 0)
         {
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
-        
-            if (time >= maxTime)
-            {
-                audioSource.PlayOneShot(GameOverClip);
-                Debug.Log("끝났어요");
-                timeTxt.text = "30.0";
-                Time.timeScale = 0.0f;
-                Fail.SetActive(true);
-            }
-         }
+        }
+
+        if (time >= maxTime)
+        {
+            audioSource.PlayOneShot(GameOverClip);
+            Debug.Log("끝났어요");
+            timeTxt.text = "30.0";
+            //Time.timeScale = 0.0f;
+            Fail.SetActive(true);
+        }
     }
 
+
     public void Matched()
+{
+    if (firstCard.idx == secondCard.idx)
     {
-        if (firstCard.idx == secondCard.idx)
+        audioSource.PlayOneShot(MatchClip);
+        Debug.Log("잘했어요");
+        matchingImage.sprite = Resources.Load<Sprite>(ImageChange(firstCard.idx));
+        matchBoard.SetActive(true);
+        Invoke("CloseMatchingImage", showTime);
+        firstCard.DestoryCard();
+        secondCard.DestoryCard();
+        cardCount -= 2;
+        if (cardCount == 0)
         {
-            audioSource.PlayOneShot(MatchClip);
-            Debug.Log("잘했어요");
-            matchingImage.sprite = Resources.Load<Sprite>(ImageChange(firstCard.idx));
-            matchBoard.SetActive(true);
-            Invoke("CloseMatchingImage", showTime);
-            firstCard.DestoryCard();
-            secondCard.DestoryCard();
-            cardCount -= 2;
-            if (cardCount == 0)
-            {
-                audioSource.PlayOneShot(ClearClip);
-                Debug.Log("이겼어요");
-                Time.timeScale = 0.0f;
-                Clear.SetActive(true);
+            audioSource.PlayOneShot(ClearClip);
+            Debug.Log("이겼어요");
+            //Time.timeScale = 0.0f;
+            Clear.SetActive(true);
 
                 string savename = SaveManager.instance.name;
                 if (savename == "Kim")
