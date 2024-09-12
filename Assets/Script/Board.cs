@@ -23,7 +23,7 @@ public class Board : MonoBehaviour
                 else if (i % 4 == 2)
                 {
                     saveRandom = Random.Range(numarr[i / 2 - 1] + 1, numarr[i / 2 - 1] + 8);
-                    numarr[i / 2] = saveRandom % 7 - saveRandom / 7;
+                    numarr[i / 2] = saveRandom % 8;
                 }
                 arr[i] = namearr[i / 4] + numarr[i / 2].ToString();
             }

@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
     public Text nameTxt;
     public GameObject Clear;
     public GameObject Fail;
-    public GameObject MatchingImage;
+    public GameObject matchBoard;
+    public SpriteRenderer matchingImage;
 
     AudioSource audioSource;
     public AudioClip clip;
@@ -30,7 +31,8 @@ public class GameManager : MonoBehaviour
 
     public int cardCount = 0;
     float time = 0.0f;
-
+    float maxTime = 0.0f;
+    float showTime = 0.0f;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -62,7 +64,8 @@ public class GameManager : MonoBehaviour
         {
             nameTxt.text = "튜트리얼";
         }
-
+        if (savename == "Hidden") { maxTime = 60.0f; showTime = 0.7f;}
+        else { maxTime = 30.0f; showTime = 1f;}
 
     }
 
@@ -74,7 +77,7 @@ public class GameManager : MonoBehaviour
             time += Time.deltaTime;
             timeTxt.text = time.ToString("N2");
         
-            if (time >= 30.0f)
+            if (time >= maxTime)
             {
                 audioSource.PlayOneShot(GameOverClip);
                 Debug.Log("끝났어요");
@@ -91,8 +94,9 @@ public class GameManager : MonoBehaviour
         {
             audioSource.PlayOneShot(MatchClip);
             Debug.Log("잘했어요");
-            MatchingImage.SetActive(true);
-            Invoke("CloseMatchingImage", 1f);
+            matchingImage.sprite = Resources.Load<Sprite>(ImageChange(firstCard.idx));
+            matchBoard.SetActive(true);
+            Invoke("CloseMatchingImage", showTime);
             firstCard.DestoryCard();
             secondCard.DestoryCard();
             cardCount -= 2;
@@ -135,6 +139,22 @@ public class GameManager : MonoBehaviour
 
     public void CloseMatchingImage()
     {
-        MatchingImage.SetActive(false);
+        matchBoard.SetActive(false);
+    }
+
+    public string ImageChange(string imageName)
+    {
+        char[] imageNameChar = imageName.ToCharArray();
+        char[] strTester = imageNameChar;
+        int x = 0;
+        for (int i = 0;i<strTester.Length; i++)
+        {
+            if (int.TryParse(strTester[i].ToString(), out x))
+            {
+                strTester[i] = '8';
+            }
+        }
+        string resultImageName = new string(strTester);
+        return resultImageName;
     }
 }
