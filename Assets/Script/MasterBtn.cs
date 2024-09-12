@@ -31,8 +31,15 @@ public class MasterBtn : MonoBehaviour
     //Challenge
     public void NameSceneBtn(string name)
     {
-        SceneManager.LoadScene("NameScene");
-        SaveManager.instance.name = name;
+        if (SceneManager.GetActiveScene().name == "MenuScene")
+        {
+            SaveManager.instance.name = name;
+            SceneManager.LoadScene("NameScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("NameScene");
+        }
     }
     public void EndBtn()
     {

@@ -240,6 +240,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8cf5b970f92a64991f64b8765fe158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: 
+  Kim: 0
+  Son: 0
+  Park: 0
+  Lee: 0
+  hidden: {fileID: 0}
 --- !u!1001 &573807801
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -558,6 +564,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8238446450865971587, guid: 5ae01feee606c3441985b2178ce9e95e, type: 3}
+      propertyPath: m_Value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8238446450865971587, guid: 5ae01feee606c3441985b2178ce9e95e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2106075681}
@@ -602,10 +612,15 @@ MonoBehaviour:
   firstCard: {fileID: 0}
   secondCard: {fileID: 0}
   timeTxt: {fileID: 0}
+  nameTxt: {fileID: 0}
   Clear: {fileID: 0}
   Fail: {fileID: 0}
   MatchingImage: {fileID: 0}
   clip: {fileID: 0}
+  MatchClip: {fileID: 0}
+  FailClip: {fileID: 0}
+  GameOverClip: {fileID: 0}
+  ClearClip: {fileID: 0}
   cardCount: 0
 --- !u!4 &946401422
 Transform:

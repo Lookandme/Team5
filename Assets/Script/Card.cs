@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class Card : MonoBehaviour
 
     public ParticleSystem Pt;
 
+    Button button1;
+    Button button2;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,15 +49,30 @@ public class Card : MonoBehaviour
         {
             // firstCard에 내 정보를 넘겨준다.
             GameManager.Instance.firstCard = this;
+            button1 = FindButton();
         }
         // firstCard가 비어있지 않다면,
         else
         {
             // secondCard에 내 정보를 넘겨준다.
             GameManager.Instance.secondCard = this;
+            button2 = FindButton();
             // Mached 함수를 호출해 준다.
             GameManager.Instance.Matched();
         }
+    }
+
+    public Button FindButton()
+    {
+        Button button = this.gameObject.transform.
+            Find("Back").
+            GetChild(0).
+            GetChild(0).
+            GetComponent<Button>();
+        button.enabled = false;
+        
+
+        return button;
     }
 
     public void DestoryCard()
@@ -69,7 +87,7 @@ public class Card : MonoBehaviour
     }
 
     public void CloseCard()
-    {
+    {  
         Invoke("CloseCardInvoke", 1.0f);
     }
 
@@ -78,6 +96,9 @@ public class Card : MonoBehaviour
         anim.SetBool("isOpen", false);
         front.SetActive(false);
         back.SetActive(true);
+
+        if (button1 != null) button1.enabled = true;
+        if (button2 != null) button2.enabled = true;
     }
     public void CardState()
     {
