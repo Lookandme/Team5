@@ -115,6 +115,10 @@ public class GameManager : MonoBehaviour
                 {
                     SaveManager.instance.Lee = true;
                 }
+                else if(savename == "Hidden")
+                {
+                    SceneManager.LoadScene("EndScene");
+                }
             }
         }
         else
