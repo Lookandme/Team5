@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -68,16 +69,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        time += Time.deltaTime;
-        timeTxt.text = time.ToString("N2");
-        if (time >= 30.0f)
+        if (SceneManager.GetActiveScene().name == "NameScene")
         {
-            audioSource.PlayOneShot(GameOverClip);
-            Debug.Log("场车绢夸");
-            timeTxt.text = "30.0";
-            Time.timeScale = 0.0f;
-            Fail.SetActive(true);
-        }
+            time += Time.deltaTime;
+            timeTxt.text = time.ToString("N2");
+        
+            if (time >= 30.0f)
+            {
+                audioSource.PlayOneShot(GameOverClip);
+                Debug.Log("场车绢夸");
+                timeTxt.text = "30.0";
+                Time.timeScale = 0.0f;
+                Fail.SetActive(true);
+            }
+         }
     }
 
     public void Matched()
