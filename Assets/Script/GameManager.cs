@@ -77,6 +77,27 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if (SceneManager.GetActiveScene().name == "MenuScene")
+        {
+            if (SaveManager.instance.Kim == true)
+            {
+                GameObject.Find("Kim").gameObject.transform.GetComponent<Image>().color = Color.yellow;
+            }
+            if (SaveManager.instance.Lee == true)
+            {
+                GameObject.Find("Lee").gameObject.transform.GetComponent<Image>().color = Color.yellow;
+            }
+            if (SaveManager.instance.Son == true)
+            {
+                GameObject.Find("Son").gameObject.transform.GetComponent<Image>().color = Color.yellow;
+            }
+            if (SaveManager.instance.Park == true)
+            {
+                GameObject.Find("Park").gameObject.transform.GetComponent<Image>().color = Color.yellow;
+            }
+
+        }
         if (SceneManager.GetActiveScene().name == "NameScene")
         {
             if (cardCount != 0)
